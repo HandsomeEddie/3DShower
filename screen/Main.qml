@@ -1,5 +1,7 @@
 import QtQuick 2.15
-import QtQuick.Controls 2.15
+import QtQuick.Controls 2.1
+
+import "."
 
 ApplicationWindow {
     visible: true
@@ -11,9 +13,21 @@ ApplicationWindow {
         anchors.fill: parent
         color: "lightblue"
 
+        Ctrl {
+            anchors {
+                right: parent.right
+            }
+        }
+
+        Show {
+            anchors {
+                left: parent.left
+            }
+        }
+
         Text {
             anchors.centerIn: parent
-            text: "Hello, 3D Shower!!"
+            text: "Main Qml"
             font.pointSize: 24
         }
     }

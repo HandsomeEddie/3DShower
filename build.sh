@@ -1,5 +1,7 @@
 #!/bin/bash
 
+rm -rf build
+
 # 创建构建目录（如果不存在）
 mkdir -p build
 

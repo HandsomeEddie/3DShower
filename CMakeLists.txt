@@ -1,17 +1,22 @@
-cmake_minimum_required(VERSION 3.16)
-project(3DShower)
+cmake_minimum_required(VERSION 3.15)  
 
-set(CMAKE_CXX_STANDARD 17)
+project(3DShower LANGUAGES CXX)  
 
-# Find the Qt6 package
-find_package(Qt6 REQUIRED COMPONENTS Core Quick)
+set(CMAKE_CXX_STANDARD 17)  
+set(CMAKE_CXX_STANDARD_REQUIRED ON)  
+set(CMAKE_CXX_EXTENSIONS OFF)  
 
-# Add the executable
-add_executable(3DShower main.cpp)
+set(CMAKE_AUTOMOC ON)  
+set(CMAKE_AUTORCC ON)  
+set(CMAKE_AUTOUIC ON)  
 
-# Add the Qt modules for linking
-target_link_libraries(3DShower PRIVATE Qt6::Core Qt6::Quick)
+find_package(Qt6 COMPONENTS Core Quick REQUIRED)  
 
-# Include QML resources
-qt_add_resources(QML_RESOURCES qml.qrc)
-target_sources(3DShower PRIVATE ${QML_RESOURCES})
+set(SOURCE_FILES  
+    main.cpp  
+)  
+
+add_subdirectory(screen)  
+
+add_executable(3DShower ${SOURCE_FILES} screen/Main.qrc)  
+target_link_libraries(3DShower PRIVATE Qt6::Core Qt6::Quick ScreenModule)
