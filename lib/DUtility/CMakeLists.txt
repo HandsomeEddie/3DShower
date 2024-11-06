@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.15)  
 set(CMAKE_CXX_STANDARD 17)  
 
-message(STATUS "Building Package ScreenModule")
+message(STATUS "Building Package DUtility")
 
-set(target_name ScreenModule)
+set(target_name DUtility)
 
 set(CMAKE_AUTOMOC ON)  
 set(CMAKE_AUTORCC ON)  
@@ -14,24 +14,16 @@ find_package(Qt6 COMPONENTS Core Quick REQUIRED)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
 
-set(SOURCE
-    src/test.cpp
+set(SOURCE  
+    src/SystemEnv.cpp  
 )  
 
 set(HEADER
+    include/export_api.h
+    include/SystemEnv.h
 )
 
-set(SCREEN_RESOURCES  
-    qml/Main.qrc  
-)  
-
-set(SCREEN_FILES  
-    qml/Main.qml
-)  
-
-add_library(ScreenModule SHARED ${SCREEN_FILES} ${SCREEN_RESOURCES} ${SOURCE} ${HEADER})  
-
-message(STATUS ${CMAKE_CURRENT_SOURCE_DIR})
+add_library(${target_name} SHARED ${SOURCE} ${HEADER})  
 
 target_include_directories(${target_name}
     PUBLIC
@@ -46,19 +38,14 @@ set(system_libs
 )
 
 set(internal_libs
-    DUtility
 )
 
 set(external_libs
-    Qt6::Core
-    Qt6::Quick
-    Qt6::Qml
 )
 
 target_link_libraries(${target_name}
     PUBLIC ${system_libs} ${internal_libs} ${external_libs}
 )
 
-install(DIRECTORY ${CMAKE_SOURCE_DIR}/screen/qml/ DESTINATION ${CMAKE_SOURCE_DIR}/build/screen/qml)
-
-install(TARGETS ScreenModule DESTINATION ${CMAKE_SOURCE_DIR}/build/lib)
+install(TARGETS ${target_name} DESTINATION ${CMAKE_SOURCE_DIR}/build/lib)
+#install(DIRECTORY include DESTINATION ${CMAKE_SOURCE_DIR}/${INSTALL_INCLUDE_DIR})

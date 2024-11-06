@@ -16,7 +16,9 @@ set(SOURCE_FILES
     main.cpp  
 )  
 
+add_subdirectory(lib)  
 add_subdirectory(screen)  
 
-add_executable(3DShower ${SOURCE_FILES} screen/qml/Main.qrc)  
+add_executable(3DShower ${SOURCE_FILES} screen/qml/Main.qrc)
+
 target_link_libraries(3DShower PRIVATE Qt6::Core Qt6::Quick ScreenModule)
