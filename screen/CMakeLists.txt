@@ -1,9 +1,9 @@
 set(SCREEN_RESOURCES  
-    Main.qrc  
+    qml/Main.qrc  
 )  
 
 set(SCREEN_FILES  
-    Main.qml
+    qml/Main.qml
 )  
 
 add_library(ScreenModule STATIC ${SCREEN_FILES} ${SCREEN_RESOURCES})  
