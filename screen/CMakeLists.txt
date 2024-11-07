@@ -14,6 +14,8 @@ find_package(Qt6 COMPONENTS Core Quick REQUIRED)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
 
+include_directories(${CMAKE_INSTALL_PREFIX}/include/DUtility)
+
 set(SOURCE
     src/test.cpp
 )  
@@ -36,6 +38,7 @@ message(STATUS ${CMAKE_CURRENT_SOURCE_DIR})
 target_include_directories(${target_name}
     PUBLIC
         $<INSTALL_INTERFACE:include>
+        $<BUILD_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>  
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include
     PRIVATE
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include
@@ -59,6 +62,12 @@ target_link_libraries(${target_name}
     PUBLIC ${system_libs} ${internal_libs} ${external_libs}
 )
 
-install(DIRECTORY ${CMAKE_SOURCE_DIR}/screen/qml/ DESTINATION ${CMAKE_SOURCE_DIR}/build/screen/qml)
+install(DIRECTORY ${PROJECT_ROOT_DIR}/screen/qml/  
+        DESTINATION ${PROJECT_ROOT_DIR}/install/screen/qml)  
 
-install(TARGETS ScreenModule DESTINATION ${CMAKE_SOURCE_DIR}/build/lib)
+install(TARGETS ScreenModule  
+        DESTINATION ${PROJECT_ROOT_DIR}/install/lib)
+
+
+        message(STATUS "DUtility include directory: ${CMAKE_INSTALL_PREFIX}/include/DUtility")  
+message(STATUS "DUtility library: ${CMAKE_INSTALL_PREFIX}/lib/libDUtility.so")

@@ -47,5 +47,9 @@ target_link_libraries(${target_name}
     PUBLIC ${system_libs} ${internal_libs} ${external_libs}
 )
 
-install(TARGETS ${target_name} DESTINATION ${CMAKE_SOURCE_DIR}/build/lib)
-#install(DIRECTORY include DESTINATION ${CMAKE_SOURCE_DIR}/${INSTALL_INCLUDE_DIR})
+install(TARGETS ${target_name}  
+        LIBRARY DESTINATION lib  
+        ARCHIVE DESTINATION lib)  
+
+install(DIRECTORY include/  
+        DESTINATION ${CMAKE_INSTALL_PREFIX}/include/${target_name})

@@ -18,3 +18,5 @@ make install
 
 # 如果需要运行项目，可以添加如下命令
 # ./3DShower
+
+cd ..

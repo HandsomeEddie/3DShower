@@ -12,13 +12,16 @@ set(CMAKE_AUTOUIC ON)
 
 find_package(Qt6 COMPONENTS Core Quick REQUIRED)  
 
-set(SOURCE_FILES  
+set(PROJECT_ROOT_DIR ${CMAKE_SOURCE_DIR})
+set(CMAKE_INSTALL_PREFIX ${PROJECT_ROOT_DIR}/install)
+
+set(SOURCE
     main.cpp  
 )  
 
 add_subdirectory(lib)  
 add_subdirectory(screen)  
 
-add_executable(3DShower ${SOURCE_FILES} screen/qml/Main.qrc)
+add_executable(3DShower ${SOURCE} screen/qml/Main.qrc)
 
 target_link_libraries(3DShower PRIVATE Qt6::Core Qt6::Quick ScreenModule)
